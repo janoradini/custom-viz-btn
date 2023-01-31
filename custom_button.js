@@ -40,9 +40,25 @@ looker.plugins.visualizations.add({
     // Create an element to contain the text.
     this._button = container.appendChild(document.createElement("button"));
     this._button.innerHTML = "Aggiorna!";
+
     this._button.onclick = function () {
-      alert("Button is clicked");
       console.log("Button is clicked");
+      this._button.innerHTML = "Aggiornando...";
+      var xhttp = new XMLHttpRequest();
+      xhttp.setRequestHeader("Content-Type", "application/json");
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+          this._button.innerHTML = "Aggiorna!";
+          console.log(xhttp.responseText);
+        }
+      };
+
+      cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
+      req_body = { secret: "very supersecret secret" };
+      xhttp.open("POST", cloud_function_url, true);
+
+      xhttp.send(JSON.stringify(req_body));
     };
   },
   // Render in response to the data or settings changing
