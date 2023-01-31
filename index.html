@@ -22,7 +22,8 @@
 
       this._button.onclick = function () {
         console.log("Button is clicked");
-        _button.innerHTML = "Aggiornando...";
+        console.log(this);
+        this.innerHTML = "Aggiornando...";
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {

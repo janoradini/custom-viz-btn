@@ -1,7 +1,4 @@
 looker.plugins.visualizations.add({
-  // Id and Label are legacy properties that no longer have any function besides documenting
-  // what the visualization used to have. The properties are now set via the manifest
-  // form within the admin/visualizations page of Looker
   id: "custom_button",
   label: "Custom Button",
   options: {
@@ -72,23 +69,14 @@ looker.plugins.visualizations.add({
       xhttp.send(JSON.stringify(req_body));
     };
   },
+
   // Render in response to the data or settings changing
   updateAsync: function (data, element, config, queryResponse, details, done) {
     // Clear any errors from previous updates
     this.clearErrors();
 
     // Throw some errors and exit if the shape of the data isn't what this chart needs
-    //if (queryResponse.fields.dimensions.length == 0) {
-    //this.addError({ title: "", message: "" });
-    // return;    }
-
-    // Grab the first cell of the data
-    //var firstRow = data[0];
-    //var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
-
-    // Insert the data into the page
-    // Set the size to the user-selected size
-    // We are done rendering! Let Looker know.
+    //this.addError({ title: "", message: "" });// return;
     done();
   },
 });
