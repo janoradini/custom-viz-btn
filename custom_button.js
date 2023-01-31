@@ -50,13 +50,13 @@ looker.plugins.visualizations.add({
 
     this._button.onclick = function () {
       console.log("Button is clicked");
-      _button.innerHTML = "Aggiornando...";
+      this.innerHTML = "Aggiornando...";
       var xhttp = new XMLHttpRequest();
 
       xhttp.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
           console.log(xhttp.responseText);
-          this._button.innerHTML = "Aggiorna!";
+          _button.innerHTML = "Aggiorna!";
         }
       };
 
