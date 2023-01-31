@@ -63,8 +63,7 @@ looker.plugins.visualizations.add({
       cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
       req_body = { secret: "very supersecret secret" };
       xhttp.open("POST", cloud_function_url, true);
-      xhttp.setRequestHeader("Content-Type", "application/json");
-      xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xhttp.setRequestHeader("Origin", "https://italianapetroli.cloud.looker.com/");
 
       xhttp.send(JSON.stringify(req_body));
     };
