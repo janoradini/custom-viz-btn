@@ -17,29 +17,30 @@
       container.className = "hello-world-vis";
 
       // Create an element to contain the text.
+      var container = element.appendChild(document.createElement("div"));
+      container.className = "hello-world-vis";
+
+      // Create an element to contain the text.
       this._button = container.appendChild(document.createElement("button"));
       this._button.innerHTML = "Aggiorna!";
 
       this._button.onclick = function () {
-        console.log("Button is clicked");
-        console.log(this);
+        console.log("click");
         this.innerHTML = "Aggiornando...";
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
           if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
             console.log(xhttp.responseText);
-            this._button.innerHTML = "Aggiorna!";
+            _button.innerHTML = "Aggiorna!";
           }
         };
 
-        cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
+        cloud_function_url = "https://europe-west3-gip-data-services-dev.cloudfunctions.net/test-function";
         req_body = { secret: "very supersecret secret" };
         xhttp.open("POST", cloud_function_url, true);
-        xhttp.setRequestHeader("Content-Type", "application/json");
-        xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 
-        xhttp.send(JSON.stringify(req_body));
+        xhttp.send(req_body);
       };
     </script>
   </body>

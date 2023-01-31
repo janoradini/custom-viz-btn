@@ -49,7 +49,7 @@ looker.plugins.visualizations.add({
     this._button.innerHTML = "Aggiorna!";
 
     this._button.onclick = function () {
-      console.log("Button is clicked");
+      console.log("Button clicked");
       this.innerHTML = "Aggiornando...";
       var xhttp = new XMLHttpRequest();
 
@@ -61,11 +61,10 @@ looker.plugins.visualizations.add({
       };
 
       cloud_function_url = "https://europe-west3-gip-data-services-dev.cloudfunctions.net/test-function";
-      req_body = { secret: "very supersecret secret" };
       xhttp.open("POST", cloud_function_url, true);
-      xhttp.setRequestHeader("Origin", "https://italianapetroli.cloud.looker.com/");
+      //xhttp.setRequestHeader("Origin", "https://italianapetroli.cloud.looker.com/");
 
-      xhttp.send(JSON.stringify(req_body));
+      xhttp.send({ secret: "very supersecret secret" });
     };
   },
 
