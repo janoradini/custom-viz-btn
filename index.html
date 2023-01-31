@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>1</p>
+    <div id="element"></div>
+    <script>
+      let element = document.getElementById("element");
+      //////////////////////////
+
+      var container = element.appendChild(document.createElement("div"));
+      container.className = "hello-world-vis";
+
+      // Create an element to contain the text.
+      this._button = container.appendChild(document.createElement("button"));
+      this._button.innerHTML = "Aggiorna!";
+
+      this._button.onclick = function () {
+        console.log("Button is clicked");
+        _button.innerHTML = "Aggiornando...";
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            console.log(xhttp.responseText);
+            this._button.innerHTML = "Aggiorna!";
+          }
+        };
+
+        cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
+        req_body = { secret: "very supersecret secret" };
+        xhttp.open("POST", cloud_function_url, true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+        xhttp.send(JSON.stringify(req_body));
+      };
+    </script>
+  </body>
+</html>

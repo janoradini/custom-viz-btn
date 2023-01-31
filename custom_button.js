@@ -7,7 +7,13 @@ looker.plugins.visualizations.add({
   options: {
     secret: {
       type: "string",
+      label: "CF URL",
+      placeholder: "Cloud Function URL",
+    },
+    secret: {
+      type: "string",
       label: "Secret",
+      placeholder: "Segreto per l'autenticazione",
     },
   },
   // Set up the initial state of the visualization
@@ -38,25 +44,30 @@ looker.plugins.visualizations.add({
     container.className = "hello-world-vis";
 
     // Create an element to contain the text.
+    var container = element.appendChild(document.createElement("div"));
+    container.className = "hello-world-vis";
+
+    // Create an element to contain the text.
     this._button = container.appendChild(document.createElement("button"));
     this._button.innerHTML = "Aggiorna!";
 
     this._button.onclick = function () {
       console.log("Button is clicked");
-      this._button.innerHTML = "Aggiornando...";
+      _button.innerHTML = "Aggiornando...";
       var xhttp = new XMLHttpRequest();
-      xhttp.setRequestHeader("Content-Type", "application/json");
 
       xhttp.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-          this._button.innerHTML = "Aggiorna!";
           console.log(xhttp.responseText);
+          this._button.innerHTML = "Aggiorna!";
         }
       };
 
       cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
       req_body = { secret: "very supersecret secret" };
       xhttp.open("POST", cloud_function_url, true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 
       xhttp.send(JSON.stringify(req_body));
     };
