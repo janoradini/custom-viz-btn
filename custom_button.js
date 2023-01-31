@@ -60,7 +60,7 @@ looker.plugins.visualizations.add({
         }
       };
 
-      cloud_function_url = "https://us-central1-gip-data-dwh-dev.cloudfunctions.net/test_custom_button";
+      cloud_function_url = "https://europe-west3-gip-data-services-dev.cloudfunctions.net/test-function";
       req_body = { secret: "very supersecret secret" };
       xhttp.open("POST", cloud_function_url, true);
       xhttp.setRequestHeader("Origin", "https://italianapetroli.cloud.looker.com/");
