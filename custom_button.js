@@ -38,7 +38,12 @@ looker.plugins.visualizations.add({
     container.className = "hello-world-vis";
 
     // Create an element to contain the text.
-    this._textElement = container.appendChild(document.createElement("div"));
+    this._button = container.appendChild(document.createElement("button"));
+    this._button.innerHTML = "Aggiorna!";
+    this._button.onclick = function () {
+      alert("Button is clicked");
+      console.log("Button is clicked");
+    };
   },
   // Render in response to the data or settings changing
   updateAsync: function (data, element, config, queryResponse, details, done) {
@@ -55,9 +60,6 @@ looker.plugins.visualizations.add({
     //var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
 
     // Insert the data into the page
-    this._textElement.className = "hello-world-text-large";
-    this._textElement.innerHTML = "YOLO FROM CUSTOM VIZ";
-
     // Set the size to the user-selected size
     // We are done rendering! Let Looker know.
     done();
