@@ -15,6 +15,8 @@ looker.plugins.visualizations.add({
   },
   // Set up the initial state of the visualization
   create: function (element, config) {
+    console.log(element);
+    console.log(config);
     console.log("here for real");
     // Insert a <style> tag with some styles we'll use later.
     element.innerHTML = `
@@ -26,12 +28,6 @@ looker.plugins.visualizations.add({
           flex-direction: column;
           justify-content: center;
           text-align: center;
-        }
-        .hello-world-text-large {
-          font-size: 72px;
-        }
-        .hello-world-text-small {
-          font-size: 18px;
         }
       </style>
     `;
@@ -76,5 +72,26 @@ looker.plugins.visualizations.add({
     // Throw some errors and exit if the shape of the data isn't what this chart needs
     //this.addError({ title: "", message: "" });// return;
     done();
+  },
+
+  updateAsync: function (data, element, config, queryResponse, details, doneRendering) {
+    console.log("-------------------------- updateAsync  --------------------------");
+    console.log("data");
+    console.log(data);
+    console.log("element");
+    console.log(element);
+    console.log("config");
+    console.log(config);
+    console.log("queryResponse");
+    console.log(queryResponse);
+    console.log("details");
+    console.log(details);
+    /*var html = "";
+		for(var row of data) {
+			var cell = row[queryResponse.fields.dimensions[0].name];
+			html += LookerCharts.Utils.htmlForCell(cell);
+		}
+		element.innerHTML = html; */
+    doneRendering();
   },
 });
